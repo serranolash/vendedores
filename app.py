@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
-from waitress import serve
+#from waitress import serve
 import logging
 
 # Configuración
@@ -66,5 +66,4 @@ def empleados():
         return jsonify({"message": "Empleado eliminado exitosamente"}), response.status_code
 
 if __name__ == '__main__':
-    # Usar Waitress para producción y permitir conexiones externas
-    serve(app, host='0.0.0.0', port=5003)
+    app.run()
