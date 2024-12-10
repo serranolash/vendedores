@@ -20,6 +20,12 @@ HEADERS = {
     "Content-Type": "application/json"
 }
 
+
+@app.route("/")
+def home():
+    return jsonify({"message": "Bienvenido a la API de Vendedores"})
+
+
 @app.route('/api/empleados', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def empleados():
     url = f"{BASE_URL}/Cliente/"
