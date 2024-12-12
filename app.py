@@ -1,16 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
-#from waitress import serve
 import logging
-
-# Configuración
 from config import ID_CLIENTE, AUTHORIZATION, BASE_URL, BASE_DE_DATOS_EMPLEADOS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # Permitir solicitudes desde cualquier origen
+CORS(app, resources={r"/*": {"origins": "*"}})
 
-# Configurar el nivel de logging
 logging.basicConfig(level=logging.INFO)
 
 HEADERS = {
@@ -20,11 +16,9 @@ HEADERS = {
     "Content-Type": "application/json"
 }
 
-
 @app.route("/")
 def home():
     return jsonify({"message": "Bienvenido a la API de Vendedores"})
-
 
 @app.route('/api/empleados', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def empleados():
@@ -65,5 +59,4 @@ def empleados():
         response = requests.delete(url, headers=headers)
         return jsonify({"message": "Empleado eliminado exitosamente"}), response.status_code
 
-if __name__ == '__main__':
-    app.run()
+# No es necesario el if __name__ == '__main__': para Render
